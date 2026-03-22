@@ -1,0 +1,463 @@
+/* My Teams Page - Holographic Arena Design */
+
+/* Page Background */
+.page-layout {
+  background: #080c14;
+  background-image: radial-gradient(ellipse at 30% 20%, rgba(99,102,241,0.08) 0%, transparent 60%);
+  min-height: 100vh;
+}
+
+/* Page Container with Animation */
+.page-container {
+  animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.page-header {
+  padding: 0;
+  margin: 0;
+}
+
+.page-header h1 {
+  font-family: 'Rajdhani', 'Orbitron', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* Button Glow */
+.btn-glow {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border: none;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgba(99, 102, 241, 0.6);
+}
+
+/* Teams Section */
+.teams-section {
+  margin-top: 48px;
+  animation: fadeInUp 0.6s ease;
+  animation-fill-mode: both;
+}
+
+.teams-section:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.teams-section:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.section-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 24px;
+  letter-spacing: 0.03em;
+}
+
+.section-accent {
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 2px;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+}
+
+/* Teams Grid */
+.my-teams-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Team Card Base */
+.my-team-card {
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.my-team-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Captain Card - Subtle */
+.captain-card {
+  border-width: 1px;
+}
+
+.captain-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Member Card - Subtle */
+.member-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.member-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Banner */
+.my-team-banner {
+  width: 100%;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.my-team-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80%;
+  background: linear-gradient(to bottom, transparent 50%, #080c14 100%);
+  pointer-events: none;
+}
+
+/* Avatar Section */
+.my-team-avatar-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 24px;
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+}
+
+.my-team-avatar {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.my-team-card:hover .my-team-avatar {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Role Badges */
+.role-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.captain-badge {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.captain-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+.member-badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Content */
+.my-team-content {
+  padding: 16px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.my-team-content h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  transition: all 0.3s ease;
+  letter-spacing: 0.03em;
+}
+
+.my-team-card:hover .my-team-content h3 {
+  text-shadow: 0 0 20px currentColor;
+}
+
+.my-team-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.team-tag-badge {
+  font-weight: 600;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.team-game-badge {
+  font-size: 12px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.team-game-badge img {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.my-team-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-muted {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.02em;
+}
+
+/* Buttons */
+.my-team-btn {
+  width: 100%;
+  margin-top: auto;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.captain-btn {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.captain-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  opacity: 0.1;
+  transition: left 0.5s ease;
+}
+
+.captain-btn:hover::before {
+  left: 100%;
+}
+
+.captain-btn:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+}
+
+.member-btn {
+  background: transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.member-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.member-btn:hover::before {
+  left: 100%;
+}
+
+.member-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 20px currentColor;
+  transform: translateY(-2px);
+}
+
+/* Actions Container */
+.my-team-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.my-team-actions .my-team-btn {
+  flex: 1;
+}
+
+.leave-team-btn {
+  background: rgba(255, 59, 59, 0.08);
+  border: 1px solid rgba(255, 59, 59, 0.2);
+  color: rgba(255, 59, 59, 0.6);
+  font-size: 13px;
+  padding: 10px 16px;
+  transition: all 0.3s ease;
+}
+
+.leave-team-btn:hover {
+  background: rgba(255, 59, 59, 0.15);
+  border-color: rgba(255, 59, 59, 0.4);
+  color: rgba(255, 59, 59, 0.9);
+  box-shadow: 0 0 16px rgba(255, 59, 59, 0.3);
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  text-align: center;
+  gap: 16px;
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.empty-state svg {
+  opacity: 0.2;
+  margin-bottom: 8px;
+  color: #6366f1;
+}
+
+.empty-state h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.empty-state p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 400px;
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Staggered Animation for Cards */
+.my-team-card:nth-child(1) { animation: fadeInUp 0.6s ease 0.35s both; }
+.my-team-card:nth-child(2) { animation: fadeInUp 0.6s ease 0.4s both; }
+.my-team-card:nth-child(3) { animation: fadeInUp 0.6s ease 0.45s both; }
+.my-team-card:nth-child(4) { animation: fadeInUp 0.6s ease 0.5s both; }
+.my-team-card:nth-child(5) { animation: fadeInUp 0.6s ease 0.55s both; }
+.my-team-card:nth-child(6) { animation: fadeInUp 0.6s ease 0.6s both; }
+.my-team-card:nth-child(n+7) { animation: fadeInUp 0.6s ease 0.65s both; }
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .my-teams-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 36px;
+  }
+
+  .my-teams-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .my-team-banner {
+    height: 100px;
+  }
+
+  .my-team-avatar-section {
+    margin-top: -35px;
+  }
+
+  .my-team-content {
+    padding: 12px 20px 20px;
+  }
+
+  .my-team-actions {
+    flex-direction: column;
+  }
+
+  .empty-state {
+    padding: 60px 24px;
+  }
+}

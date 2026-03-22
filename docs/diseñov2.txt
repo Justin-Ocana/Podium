@@ -1,0 +1,88 @@
+
+
+## SISTEMA DE DISEÑO: "Holographic Arena"
+
+### Paleta
+--bg-base: #080c14
+--bg-surface: rgba(255,255,255,0.04)
+--border-subtle: rgba(255,255,255,0.08)
+--border-bright: rgba(255,255,255,0.15)
+--accent-ui: #6366f1
+--text-primary: rgba(255,255,255,0.95)
+--text-muted: rgba(255,255,255,0.45)
+
+### Fondo
+- Color base: #080c14
+- Radial gradient sutil: radial-gradient(ellipse at 30% 20%, 
+  rgba(99,102,241,0.08) 0%, transparent 60%)
+- Grid de puntos decorativo opcional en el fondo
+
+### Cards / Contenedores
+- background: rgba(255,255,255,0.04)
+- backdrop-filter: blur(20px)
+- border: 1px solid rgba(255,255,255,0.08)
+- border-radius: 16px
+- box-shadow: 0 8px 40px rgba(0,0,0,0.4), 
+              inset 0 1px 0 rgba(255,255,255,0.06)
+
+### Inputs
+- background: rgba(255,255,255,0.05)
+- border: 1px solid rgba(255,255,255,0.12)
+- border-radius: 10px
+- color: rgba(255,255,255,0.95)
+- Al focus: border-color cambia al accent color + 
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.25)
+
+### Botón primario
+- background: linear-gradient(135deg, #6366f1, #8b5cf6)
+- border: none
+- border-radius: 10px
+- box-shadow: 0 4px 20px rgba(99,102,241,0.4)
+- Al hover: shimmer o brillo animado, translateY(-1px)
+
+### Botón ghost / secundario
+- background: transparent
+- border: 1px solid rgba(255,255,255,0.15)
+- Al hover: background: rgba(255,255,255,0.06)
+
+### Tipografía
+- Headings principales: fuente display con carácter 
+  (Orbitron, Rajdhani, o Bebas Neue)
+- Body: fuente legible y moderna (Sora, DM Sans, o Outfit)
+- Subtítulos: letter-spacing: 0.05em, opacidad 0.45
+- Section headers: con línea accent de color a la izquierda 
+  (border-left: 2px solid #6366f1)
+
+### Dividers
+- Reemplaza <hr> planos por líneas con gradiente:
+  background: linear-gradient(to right, 
+  rgba(99,102,241,0.5), transparent)
+- height: 1px, border: none
+
+### Elementos con color dinámico del usuario 
+  (ej: color de equipo, color de perfil)
+- Usarlo como glow en bordes: box-shadow: 0 0 0 2px <color>, 
+  0 0 20px <color>40
+- Usarlo en text-shadow para nombres/títulos destacados
+- El card que lo contiene debe tener border-top con ese color
+
+### Efectos de profundidad en imágenes/banners
+- Overlay gradiente inferior: 
+  linear-gradient(to bottom, transparent 40%, #080c14 100%)
+- Avatares con borde glow del color primario del elemento
+- Avatares que sobrepasan el banner: margin-top negativo + 
+  position relative + z-index
+
+### Animaciones
+- Entrada de página: fade + translateY(20px) con stagger 
+  en secciones (animation-delay escalonado)
+- Hover en cards: translateY(-2px) + border más brillante
+- Transiciones en preview en tiempo real: 
+  transition: all 0.3s ease en todos los elementos del preview
+
+### Jerarquía visual
+- El elemento hero de cada sección debe ser 2-3x más grande 
+  que el resto
+- Nada debe tener el mismo nivel de contraste — 
+  siempre hay un elemento dominante por sección
+- Textos descriptivos en italic con opacidad baja

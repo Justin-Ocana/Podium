@@ -1,0 +1,230 @@
+/* Team Public Page */
+.team-public-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Team Banner */
+.team-banner {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+}
+
+.team-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Team Header */
+.team-header {
+  padding: var(--space-8) var(--space-6);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.team-header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.team-logo {
+  margin-top: -60px;
+  border: 4px solid var(--bg-card);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.team-title-section {
+  flex: 1;
+}
+
+.team-title-section h1 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-1);
+}
+
+.team-tag {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-2);
+  opacity: 0.8;
+}
+
+.team-game {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+.team-description {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+  max-width: 800px;
+}
+
+/* Team Stats Row */
+.team-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-4);
+  background: var(--bg-main);
+  border-radius: var(--radius-md);
+}
+
+.stat-value {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--primary);
+  margin-bottom: var(--space-1);
+}
+
+.stat-label {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Team Content Grid */
+.team-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  padding: var(--space-6);
+}
+
+.team-section h2 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--text-main);
+  margin-bottom: var(--space-4);
+}
+
+/* Members List */
+.members-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--bg-main);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.member-item:hover {
+  background: var(--bg-hover);
+}
+
+.member-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.member-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--text-main);
+}
+
+.member-role {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+}
+
+.member-role.captain {
+  color: var(--warning);
+}
+
+.member-role.member {
+  color: var(--text-muted);
+}
+
+/* Tournaments List */
+.tournaments-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tournament-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3);
+  background: var(--bg-main);
+  border-radius: var(--radius-md);
+}
+
+.tournament-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--text-main);
+}
+
+.tournament-status {
+  font-size: var(--text-sm);
+  padding: var(--space-1) var(--space-3);
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  font-weight: var(--font-semibold);
+}
+
+.empty-text {
+  text-align: center;
+  color: var(--text-muted);
+  padding: var(--space-6);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .team-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .team-banner {
+    height: 200px;
+  }
+
+  .team-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .team-logo {
+    margin-top: -40px;
+  }
+
+  .team-stats-row {
+    grid-template-columns: 1fr;
+  }
+}

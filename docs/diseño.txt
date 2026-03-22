@@ -1,0 +1,491 @@
+PODIUM DESIGN SYSTEM
+Versión: 1.0
+Tipo: Web Application (Esports / Tournament Platform)
+Objetivo: Definir el estilo visual completo y consistente para la plataforma Podium.
+
+---
+
+1. FILOSOFÍA DE DISEÑO
+
+---
+
+Podium es una plataforma competitiva de torneos.
+El diseño debe transmitir:
+
+* Profesionalismo
+* Competitividad
+* Tecnología
+* Claridad visual
+* Rapidez de uso
+
+El estilo visual combina:
+
+* SaaS moderno
+* Plataformas de esports
+* Interfaces tipo dashboard
+
+Principios fundamentales:
+
+1. Minimalismo funcional
+2. Alto contraste para legibilidad
+3. Jerarquía visual clara
+4. Consistencia en todos los componentes
+5. Interfaz rápida y sin distracciones
+
+Estética principal:
+
+Dark UI + Accent Colors
+
+---
+
+2. PALETA DE COLORES
+
+---
+
+2.1 Colores Base (Background)
+
+--bg-main: #0F172A
+Fondo principal de la aplicación.
+
+--bg-card: #1E293B
+Fondo de tarjetas y paneles.
+
+--bg-hover: #334155
+Color de hover para elementos interactivos.
+
+--bg-navbar: #020617
+Fondo de la barra superior.
+
+2.2 Colores Primarios
+
+--primary: #3B82F6
+Color principal de la aplicación.
+
+Uso:
+
+* Botones principales
+* Links
+* Acciones clave
+
+--primary-hover: #2563EB
+
+2.3 Colores de Acento
+
+--accent-purple: #A855F7
+Uso:
+
+* Elementos competitivos
+* Rankings
+* Estadísticas
+
+--accent-cyan: #22D3EE
+Uso:
+
+* Destacar torneos
+* Indicadores visuales
+
+2.4 Colores de Texto
+
+--text-main: #F8FAFC
+Texto principal.
+
+--text-secondary: #CBD5F5
+Texto secundario.
+
+--text-muted: #94A3B8
+Texto menos importante.
+
+2.5 Colores de Estado
+
+--success: #10B981
+Uso:
+Confirmaciones o acciones exitosas.
+
+--warning: #F59E0B
+Uso:
+Alertas o estados pendientes.
+
+--danger: #EF4444
+Uso:
+Errores o acciones destructivas.
+
+--info: #3B82F6
+Uso:
+Información general.
+
+---
+
+3. TIPOGRAFÍA
+
+---
+
+Fuente principal:
+
+Inter
+
+Razones:
+
+* Alta legibilidad
+* Estándar en interfaces modernas
+* Excelente para dashboards
+
+Tamaños estándar:
+
+H1: 36px
+H2: 28px
+H3: 22px
+H4: 18px
+Body: 16px
+Small: 14px
+Caption: 12px
+
+Peso de fuente:
+
+Light: 300
+Regular: 400
+Medium: 500
+SemiBold: 600
+Bold: 700
+
+---
+
+4. GRID Y LAYOUT
+
+---
+
+Ancho máximo del contenido:
+
+1200px
+
+Padding estándar de página:
+
+24px
+
+Sistema de grid:
+
+12 columnas
+
+Espaciado base:
+
+4px scale
+
+Ejemplo:
+
+4px
+8px
+12px
+16px
+24px
+32px
+48px
+64px
+
+---
+
+5. NAVBAR
+
+---
+
+Altura:
+
+64px
+
+Estilo:
+
+background: #020617
+border-bottom: 1px solid #1E293B
+
+Estructura:
+
+Izquierda:
+
+* Logo Podium
+
+Centro:
+
+* Tournaments
+* Teams
+* Leaderboard
+
+Derecha:
+
+* Notifications icon
+* User Avatar
+* Dropdown Menu
+
+---
+
+6. BOTONES
+
+---
+
+6.1 Botón Primario
+
+Uso:
+Acciones principales.
+
+Estilo:
+
+background: #3B82F6
+color: white
+border-radius: 8px
+padding: 10px 18px
+font-weight: 600
+
+Hover:
+
+background: #2563EB
+
+6.2 Botón Secundario
+
+Uso:
+Acciones alternativas.
+
+Estilo:
+
+background: transparent
+border: 1px solid #334155
+color: #F8FAFC
+border-radius: 8px
+
+Hover:
+
+background: #1E293B
+
+6.3 Botón Peligro
+
+Uso:
+Acciones destructivas.
+
+Estilo:
+
+background: #EF4444
+color: white
+
+---
+
+7. CARDS
+
+---
+
+Las cards son el componente más utilizado.
+
+Uso:
+
+* Torneos
+* Equipos
+* Usuarios
+* Paneles
+
+Estilo:
+
+background: #1E293B
+border-radius: 12px
+padding: 20px
+border: 1px solid #334155
+
+Hover:
+
+transform: translateY(-2px)
+transition: 150ms
+
+---
+
+8. AVATARS
+
+---
+
+Forma:
+
+circle
+
+Tamaños estándar:
+
+Navbar: 32px
+Card: 48px
+Profile: 96px
+
+Opciones:
+
+* Imagen de usuario
+* Iniciales si no hay imagen
+
+---
+
+9. INPUTS
+
+---
+
+Estilo base:
+
+background: #020617
+border: 1px solid #334155
+border-radius: 8px
+padding: 10px
+color: white
+
+Focus:
+
+border: 1px solid #3B82F6
+
+Estados:
+
+normal
+focus
+error
+disabled
+
+---
+
+10. BADGES
+
+---
+
+Uso:
+
+Mostrar estados.
+
+Ejemplos:
+
+OPEN
+IN PROGRESS
+FINISHED
+PENDING
+
+Estilo:
+
+padding: 4px 8px
+border-radius: 6px
+font-size: 12px
+
+---
+
+11. PÁGINA DE TORNEO
+
+---
+
+Secciones:
+
+1. Header
+
+   * Banner
+   * Nombre
+   * Juego
+   * Organizador
+
+2. Participants
+
+   * Equipos inscritos
+
+3. Bracket
+
+   * Árbol del torneo
+
+4. Matches
+
+   * Partidos
+
+5. Rules
+
+   * Reglas
+
+---
+
+12. PÁGINA DE EQUIPO
+
+---
+
+Contenido:
+
+* Team Banner
+* Team Logo
+* Captain
+* Members
+* Tournaments Played
+
+---
+
+13. PÁGINA DE PERFIL
+
+---
+
+Contenido:
+
+* Avatar
+* Username
+* Bio
+* Teams
+* Tournaments Played
+* Stats
+
+---
+
+14. ANIMACIONES
+
+---
+
+Duración estándar:
+
+150ms
+
+Usos:
+
+* Hover
+* Dropdowns
+* Modals
+* Transiciones
+
+---
+
+15. RESPONSIVE DESIGN
+
+---
+
+Breakpoints:
+
+sm: 640px
+md: 768px
+lg: 1024px
+xl: 1280px
+
+---
+
+16. COMPONENTES BASE DEL SISTEMA
+
+---
+
+El sistema de UI debe incluir los siguientes componentes:
+
+Button
+Card
+Avatar
+Badge
+Input
+Modal
+Dropdown
+Navbar
+Tabs
+Tooltip
+
+---
+
+17. ESTILO VISUAL FINAL
+
+---
+
+Podium debe sentirse como una mezcla entre:
+
+* Plataforma de esports
+* Dashboard moderno
+* Aplicación SaaS profesional
+
+Características:
+
+* Dark interface
+* Contraste alto
+* Tipografía limpia
+* Interfaz rápida y clara
+
+Objetivo final:
+
+Crear una plataforma competitiva clara, profesional y moderna.
