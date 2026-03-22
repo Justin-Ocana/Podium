@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@)^emhm3o@=ay737%1g20b5$xd(ek@@mad)@s=xut#ly8!%xkc'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-@)^emhm3o@=ay737%1g20b5$xd(ek@@mad)@s=xut#ly8!%xkc')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+
+# Add Render.com host
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -57,6 +64,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Serve static files
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,27 +99,40 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neondb',
-        'USER': 'neondb_owner',
-        'PASSWORD': 'npg_ZQL03lVjknvp',
-        'HOST': 'ep-purple-cloud-aecnw0s8-pooler.c-2.us-east-2.aws.neon.tech',
-        'PORT': '5432',
-        'OPTIONS': {
-            'sslmode': 'require',
-            'connect_timeout': 10,
-            'keepalives': 1,
-            'keepalives_idle': 30,
-            'keepalives_interval': 10,
-            'keepalives_count': 5,
-        },
-        'CONN_MAX_AGE': 0,
-        'CONN_HEALTH_CHECKS': True,
-        'ATOMIC_REQUESTS': False,
+# Use DATABASE_URL from environment if available (Render), otherwise use Neon config
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True,
+            ssl_require=True
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'neondb',
+            'USER': 'neondb_owner',
+            'PASSWORD': 'npg_ZQL03lVjknvp',
+            'HOST': 'ep-purple-cloud-aecnw0s8-pooler.c-2.us-east-2.aws.neon.tech',
+            'PORT': '5432',
+            'OPTIONS': {
+                'sslmode': 'require',
+                'connect_timeout': 10,
+                'keepalives': 1,
+                'keepalives_idle': 30,
+                'keepalives_interval': 10,
+                'keepalives_count': 5,
+            },
+            'CONN_MAX_AGE': 0,
+            'CONN_HEALTH_CHECKS': True,
+            'ATOMIC_REQUESTS': False,
+        }
+    }
 
 
 # Password validation
@@ -151,6 +172,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# WhiteNoise configuration for static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Media files (User uploads)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -186,12 +210,10 @@ REST_FRAMEWORK = {
 }
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:5173",
-]
+CORS_ALLOWED_ORIGINS = os.environ.get(
+    'CORS_ALLOWED_ORIGINS',
+    'http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173'
+).split(',')
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -201,9 +223,9 @@ import cloudinary.uploader
 import cloudinary.api
 
 cloudinary.config(
-    cloud_name='dpgarzn4o',
-    api_key='888738282825486',
-    api_secret='xOqrcEic55vKu-JZSecyZDU1JSs',
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME', 'dpgarzn4o'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY', '888738282825486'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET', 'xOqrcEic55vKu-JZSecyZDU1JSs'),
     secure=True
 )
 
@@ -215,7 +237,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # RAWG API CONFIGURATION (Game Database)
 # ============================================================================
 
-RAWG_API_KEY = 'e09bf14e42b04e80a126820b2ca34f2d'
+RAWG_API_KEY = os.environ.get('RAWG_API_KEY', 'e09bf14e42b04e80a126820b2ca34f2d')
 RAWG_API_BASE_URL = 'https://api.rawg.io/api'
 
 
@@ -225,11 +247,14 @@ RAWG_API_BASE_URL = 'https://api.rawg.io/api'
 
 ASGI_APPLICATION = 'config.asgi.application'
 
+# Use Redis from environment variable if available (Render)
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [REDIS_URL],
         },
     },
 }
