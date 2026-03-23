@@ -3,6 +3,10 @@ import { useAuth } from './AuthContext';
 import { useToast } from './ToastContext';
 import { useNavigate } from 'react-router-dom';
 
+// Get API and WebSocket URLs from environment variables
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
+const WS_BASE_URL = import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8000/ws';
+
 const NotificationsContext = createContext({
   notifications: [],
   unreadCount: 0,
@@ -51,7 +55,7 @@ export const NotificationsProvider = ({ children }) => {
 
   const updatePresence = async () => {
     try {
-      await fetch('http://localhost:8000/api/users/me/', {
+      await fetch(`${API_BASE_URL}/users/me/`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -76,7 +80,7 @@ export const NotificationsProvider = ({ children }) => {
 
     try {
       console.log('Creating new WebSocket connection...');
-      const ws = new WebSocket(`ws://localhost:8000/ws/notifications/?token=${token}`);
+      const ws = new WebSocket(`${WS_BASE_URL}/notifications/?token=${token}`);
       
       ws.onopen = () => {
         console.log('✅ WebSocket connected');
@@ -135,7 +139,7 @@ export const NotificationsProvider = ({ children }) => {
 
   const loadNotifications = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/notifications/', {
+      const response = await fetch(`${API_BASE_URL}/notifications/`, {
         headers: {
           'Authorization': `Token ${localStorage.getItem('token')}`
         }
@@ -240,7 +244,7 @@ export const NotificationsProvider = ({ children }) => {
 
   const markAsRead = async (notificationId) => {
     try {
-      await fetch(`http://localhost:8000/api/notifications/${notificationId}/mark_as_read/`, {
+      await fetch(`${API_BASE_URL}/notifications/${notificationId}/mark_as_read/`, {
         method: 'POST',
         headers: {
           'Authorization': `Token ${localStorage.getItem('token')}`
@@ -258,7 +262,7 @@ export const NotificationsProvider = ({ children }) => {
 
   const markAllAsRead = async () => {
     try {
-      await fetch('http://localhost:8000/api/notifications/mark_all_as_read/', {
+      await fetch(`${API_BASE_URL}/notifications/mark_all_as_read/`, {
         method: 'POST',
         headers: {
           'Authorization': `Token ${localStorage.getItem('token')}`
@@ -274,7 +278,7 @@ export const NotificationsProvider = ({ children }) => {
 
   const deleteNotification = async (notificationId) => {
     try {
-      await fetch(`http://localhost:8000/api/notifications/${notificationId}/`, {
+      await fetch(`${API_BASE_URL}/notifications/${notificationId}/`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Token ${localStorage.getItem('token')}`
