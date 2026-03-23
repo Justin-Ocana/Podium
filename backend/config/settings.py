@@ -277,21 +277,23 @@ RAWG_API_BASE_URL = 'https://api.rawg.io/api'
 
 ASGI_APPLICATION = 'config.asgi.application'
 
-# Use Redis from environment variable if available (Render)
-REDIS_URL = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')
+# Use Redis from environment variable if available, otherwise use in-memory
+REDIS_URL = os.environ.get('REDIS_URL')
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [REDIS_URL],
+if REDIS_URL:
+    # Production with Redis
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                "hosts": [REDIS_URL],
+            },
         },
-    },
-}
-
-# For development without Redis, use in-memory channel layer
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels.layers.InMemoryChannelLayer'
-#     }
-# }
+    }
+else:
+    # Development or production without Redis (uses in-memory)
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels.layers.InMemoryChannelLayer'
+        }
+    }
