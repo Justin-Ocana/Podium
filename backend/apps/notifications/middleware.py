@@ -56,10 +56,14 @@ class TokenAuthMiddleware(BaseMiddleware):
         query_params = parse_qs(query_string)
         token_key = query_params.get('token', [None])[0]
         
+        logger.info(f"WebSocket connection attempt - Token present: {bool(token_key)}")
+        
         # Authenticate user
         if token_key:
             scope['user'] = await get_user_from_token(token_key)
+            logger.info(f"WebSocket authenticated user: {scope['user']}")
         else:
             scope['user'] = AnonymousUser()
+            logger.warning("WebSocket connection without token")
         
         return await super().__call__(scope, receive, send)
